@@ -1,13 +1,5 @@
 #!/bin/bash
 # Bash script to install an Avalanche node as a systemd service and automate its updates if desired
-#git clone https://github.com/tdeso/avalanche_setup.git 
-#cd avalanche_setup
-
-#rm -rf install.sh
-#rm -rf setup.sh
-#rm -rf setupLibrary.sh
-#rm -rf README.md
-#rm -rf LICENSE
 
 function getCurrentDir() {
     local current_dir="${BASH_SOURCE%/*}"
@@ -51,14 +43,14 @@ function main () {
     launchAvalanche
     cleanup
 
-    if [[ "${NODE_STATUS}" == "active" ]]; then
+    if [[ "${NODE_STATUS}" == "running" ]]; then
         launchedtext
         if [[ "${AUTO_UPDATE}" == "yes" ]]; then
             autoUpdatetext
         else
             updatetext
         fi
-    elif [[ "${NODE_STATUS}" == "failed" ]]; then
+    elif [[ "${NODE_STATUS}" == "exited" ]]; then
         launchedFailedtext
     fi
     monitortext
