@@ -57,11 +57,11 @@ function main () {
     echo 'Updating Avalanche Node...'
     updateAvalanche
 
-    if [[ "${NODE_STATUS}" == "active" && "${NODE_VERSION1}" != "${NODE_VERSION2}" ]]; then
+    if [[ "${NODE_STATUS}" == "running" && "${NODE_VERSION1}" != "${NODE_VERSION2}" ]]; then
         updateSuccesstext
-    elif [[ "${NODE_STATUS}" == "active" && "${NODE_VERSION1}" == "${NODE_VERSION2}" ]]; then
+    elif [[ "${NODE_STATUS}" == "running" && "${NODE_VERSION1}" == "${NODE_VERSION2}" ]]; then
         updateFailedtext
-    elif [[ "${NODE_STATUS}" == "failed" ]]; then
+    elif [[ "${NODE_STATUS}" == "exited" ]]; then
         launchedFailedtext
     fi
     monitortext
