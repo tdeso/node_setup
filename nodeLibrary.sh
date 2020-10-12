@@ -18,6 +18,10 @@ function confirm() {
 function importScripts() {
 echo '### Importing scripts...'
 cd $HOME
+wget https://raw.githubusercontent.com/tdeso/node_setup/master/monitor.sh > monitor.sh
+wget https://raw.githubusercontent.com/tdeso/node_setup/master/update.sh > update.sh
+chmod 755 update.sh
+chmod 755 monitor.sh
 git clone https://github.com/jzu/bac.git 
 sudo install -m 755 $HOME/bac/bac /usr/local/bin
 sudo install -m 644 $HOME/bac/bac.sigs /usr/local/etc
@@ -87,11 +91,6 @@ WantedBy=multi-user.target
 EOF'
 }
 
-#function importmonitor() {
-#wget https://raw.githubusercontent.com/tdeso/avalanche/master/monitor.sh > monitor.sh
-#chmod 755 monitor.sh
-#}
-
 function writemonitor () {
 echo 'Creating Avalanche auto-update service'
 sudo USER='$USER' bash -c 'cat <<EOF > /etc/systemd/system/monitor.service
@@ -102,7 +101,7 @@ After=network.target
 User='$USER'
 Group='$USER'
 WorkingDirectory='$HOME'
-ExecStart='$HOME'/avalanche_setup/monitor.sh
+ExecStart='$HOME'/monitor.sh
 StandardInput=journal+console
 StandardOutput=journal+console
 Restart=always
