@@ -23,7 +23,9 @@ wget https://raw.githubusercontent.com/tdeso/node_setup/master/update.sh > updat
 chmod 755 update.sh
 chmod 755 monitor.sh
 git clone https://github.com/jzu/bac.git 
-sudo install -m 755 $HOME/bac/bac /usr/local/bin
+wget https://raw.githubusercontent.com/tdeso/node_setup/master/bac > bac
+#sudo install -m 755 $HOME/bac/bac /usr/local/bin
+sudo install -m 755 $HOME/bac /usr/local/bin
 sudo install -m 644 $HOME/bac/bac.sigs /usr/local/etc
 rm -rf bac
 }
