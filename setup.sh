@@ -18,7 +18,7 @@ includeDependencies
 output_file="output.log"
 
 function main() {
-    read -rp "Enter the username of the new user account:" username
+    read -rp "Enter the username of the new user account: " username
 
     promptForPassword
 
